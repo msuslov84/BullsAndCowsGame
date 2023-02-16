@@ -1,6 +1,6 @@
 ## BullsAndCowsGame
 ### About:
-I've written my own advanced console version of the classic code breaking game "Bulls and Cows".
+My own advanced console version of the classic code breaking game "Bulls and Cows".
 ### Description:
 This small project from JetBrains Academy is learn how to use integer arithmetic, generate 
 random numbers, store data in data structures, and handle input errors. Also I've used JUnit 
