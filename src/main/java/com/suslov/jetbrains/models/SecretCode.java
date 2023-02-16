@@ -30,7 +30,7 @@ public class SecretCode {
         return numberOfSymbols;
     }
 
-    private void generate() {
+    protected void generate() {
         StringBuilder str = new StringBuilder();
         while (str.length() < lengthOfCode) {
             int nextInt = new Random().nextInt(numberOfSymbols);
