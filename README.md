@@ -8,6 +8,6 @@ library for checking and controlling correct perfomance.
 ### Launch example:
 * java -jar BullsAndCowsGame.jar
 ### Technical information:
-* Версия Java 8 (Oracle OpenJDK version 1.8.0_311)
-* Библиотека JUnit 4.13.2
-* Сборка проекта Apache Maven 3.8.6.
+* Java 8 (Oracle OpenJDK version 1.8.0_311)
+* JUnit 4.13.1
+* Apache Maven 3.8.6.
