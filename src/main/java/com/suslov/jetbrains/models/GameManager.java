@@ -13,13 +13,19 @@ import static com.suslov.jetbrains.models.SecretCode.SYMBOLS;
  * @author Mikhail Suslov
  */
 public class GameManager {
-    private Scanner console;
+    private final Scanner console;
     private SecretCode secretCode;
     private boolean gameOver;
 
-    public void initialize() {
-        console = new Scanner(System.in);
+    public GameManager() {
+        this(new Scanner(System.in));
+    }
 
+    public GameManager(Scanner console) {
+        this.console = console;
+    }
+
+    public void initialize() {
         int lengthOfCode = enterInputNumber(MAX_LENGTH_OF_CODE, "the secret code's length");
         int numberOfSymbols = enterInputNumber(SYMBOLS.length(), "the number of possible symbols in the code");
 
@@ -31,7 +37,7 @@ public class GameManager {
         generateSecretCode(lengthOfCode, numberOfSymbols);
     }
 
-    private int enterInputNumber(int maxValue, String valueRepresentation) {
+    protected int enterInputNumber(int maxValue, String valueRepresentation) {
         int value;
         do {
             MessageUtil.toConsole("Input %s in range [1-%d]:\n", valueRepresentation, maxValue);
@@ -41,7 +47,7 @@ public class GameManager {
         return value;
     }
 
-    private int checkValidInputNumber() {
+    protected int checkValidInputNumber() {
         String nextInt = console.nextLine();
         if (nextInt.matches("^[1-9]\\d*$")) {
             int inputInt = Integer.parseInt(nextInt);
@@ -56,7 +62,7 @@ public class GameManager {
         }
     }
 
-    private boolean checkInputValueInRange(int value, int maxValue) {
+    protected boolean checkInputValueInRange(int value, int maxValue) {
         boolean isCorrect = value > 0 && value <= maxValue;
         if (!isCorrect && value != -1) {
             MessageUtil.toConsole(ERROR_INPUT_DATA, String.valueOf(value));
@@ -64,7 +70,7 @@ public class GameManager {
         return isCorrect;
     }
 
-    private void generateSecretCode(int lengthOfCode, int numberOfSymbols) {
+    protected void generateSecretCode(int lengthOfCode, int numberOfSymbols) {
         secretCode = new SecretCode(lengthOfCode, numberOfSymbols);
         MessageUtil.toConsole("The secret is prepared: %s.\n", secretCode.represent());
         MessageUtil.toConsole("Okay, let's start a game!");
@@ -106,7 +112,7 @@ public class GameManager {
         checkInputData(cAttempt, cSecretCode);
     }
 
-    private void checkInputData(char[] cAttempt, char[] cSecretCode) {
+    protected void checkInputData(char[] cAttempt, char[] cSecretCode) {
         int cows = 0;
         int bulls = 0;
         for (int i = 0; i < cAttempt.length; i++) {
@@ -124,7 +130,7 @@ public class GameManager {
         MessageUtil.toConsole(GRADE_TEMPLATE, representGrade(cows, bulls));
     }
 
-    private String representGrade(int cows, int bulls) {
+    protected String representGrade(int cows, int bulls) {
         String grade;
         if (cows == 0 && bulls == 0) {
             grade = "None";
@@ -139,7 +145,7 @@ public class GameManager {
         return grade;
     }
 
-    private void closeGame() {
+    protected void closeGame() {
         console.close();
     }
 }
