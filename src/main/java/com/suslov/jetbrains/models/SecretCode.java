@@ -6,7 +6,7 @@ import java.util.Random;
  * @author Mikhail Suslov
  */
 public class SecretCode {
-    protected static final String SYMBOLS = "0123456789abcdefghijklmnopqrstuvwxyz";
+    static final String SYMBOLS = "0123456789abcdefghijklmnopqrstuvwxyz";
     private final int lengthOfCode;
     private final int numberOfSymbols;
     private String value;
@@ -26,11 +26,7 @@ public class SecretCode {
         return lengthOfCode;
     }
 
-    public int getNumberOfSymbols() {
-        return numberOfSymbols;
-    }
-
-    protected void generate() {
+    void generate() {
         StringBuilder str = new StringBuilder();
         while (str.length() < lengthOfCode) {
             int nextInt = new Random().nextInt(numberOfSymbols);

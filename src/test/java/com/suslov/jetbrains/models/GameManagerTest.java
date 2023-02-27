@@ -1,6 +1,5 @@
 package com.suslov.jetbrains.models;
 
-import com.suslov.jetbrains.utils.MessageUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,11 +7,7 @@ import org.junit.Test;
 
 import java.util.Scanner;
 
-import static com.suslov.jetbrains.BullsAndCowsGame.MAX_LENGTH_OF_CODE;
-import static com.suslov.jetbrains.models.SecretCode.SYMBOLS;
-import static com.suslov.jetbrains.utils.MessageUtil.ERROR_INPUT_DATA;
-import static com.suslov.jetbrains.utils.MessageUtil.ERROR_POSSIBLE_SYMBOLS;
-import static org.junit.Assert.*;
+import static com.suslov.jetbrains.models.GameManager.MAX_LENGTH_OF_CODE;
 
 /**
  * @author Mikhail Suslov

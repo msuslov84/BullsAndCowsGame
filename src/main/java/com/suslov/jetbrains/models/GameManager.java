@@ -5,14 +5,15 @@ import com.suslov.jetbrains.utils.MessageUtil;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static com.suslov.jetbrains.BullsAndCowsGame.MAX_LENGTH_OF_CODE;
-import static com.suslov.jetbrains.utils.MessageUtil.*;
 import static com.suslov.jetbrains.models.SecretCode.SYMBOLS;
+import static com.suslov.jetbrains.utils.MessageUtil.*;
 
 /**
  * @author Mikhail Suslov
  */
 public class GameManager {
+    static final int MAX_LENGTH_OF_CODE = 9;
+
     private final Scanner console;
     private SecretCode secretCode;
     private boolean gameOver;
@@ -37,7 +38,7 @@ public class GameManager {
         generateSecretCode(lengthOfCode, numberOfSymbols);
     }
 
-    protected int enterInputNumber(int maxValue, String valueRepresentation) {
+    int enterInputNumber(int maxValue, String valueRepresentation) {
         int value;
         do {
             MessageUtil.toConsole("Input %s in range [1-%d]:\n", valueRepresentation, maxValue);
@@ -47,7 +48,7 @@ public class GameManager {
         return value;
     }
 
-    protected int checkValidInputNumber() {
+    int checkValidInputNumber() {
         String nextInt = console.nextLine();
         if (nextInt.matches("^[1-9]\\d*$")) {
             int inputInt = Integer.parseInt(nextInt);
@@ -62,7 +63,7 @@ public class GameManager {
         }
     }
 
-    protected boolean checkInputValueInRange(int value, int maxValue) {
+    boolean checkInputValueInRange(int value, int maxValue) {
         boolean isCorrect = value > 0 && value <= maxValue;
         if (!isCorrect && value != -1) {
             MessageUtil.toConsole(ERROR_INPUT_DATA, String.valueOf(value));
@@ -70,7 +71,7 @@ public class GameManager {
         return isCorrect;
     }
 
-    protected void generateSecretCode(int lengthOfCode, int numberOfSymbols) {
+    void generateSecretCode(int lengthOfCode, int numberOfSymbols) {
         secretCode = new SecretCode(lengthOfCode, numberOfSymbols);
         MessageUtil.toConsole("The secret is prepared: %s.\n", secretCode.represent());
         MessageUtil.toConsole("Okay, let's start a game!");
@@ -112,7 +113,7 @@ public class GameManager {
         checkInputData(cAttempt, cSecretCode);
     }
 
-    protected void checkInputData(char[] cAttempt, char[] cSecretCode) {
+    void checkInputData(char[] cAttempt, char[] cSecretCode) {
         int cows = 0;
         int bulls = 0;
         for (int i = 0; i < cAttempt.length; i++) {
@@ -130,7 +131,7 @@ public class GameManager {
         MessageUtil.toConsole(GRADE_TEMPLATE, representGrade(cows, bulls));
     }
 
-    protected String representGrade(int cows, int bulls) {
+    String representGrade(int cows, int bulls) {
         String grade;
         if (cows == 0 && bulls == 0) {
             grade = "None";
@@ -145,7 +146,7 @@ public class GameManager {
         return grade;
     }
 
-    protected void closeGame() {
+    void closeGame() {
         console.close();
     }
 }
